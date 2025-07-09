@@ -1,5 +1,25 @@
 export PATH="$PATH:$HOME/cage_lang"
-alias cage='python ~/cage_lang/cg_interpreter.pyc'
+
+function cage {
+    if [ $# -eq 0 ]; then
+        echo "Использование: cage имя_файла.cg"
+        return 1
+    elif [ $# -eq 1 ]; then
+        if [[ "$1" == *.cg ]]; then
+            if [ "$1" == ".cg" ]; then
+                echo "Ошибка: укажите имя файла перед расширением .cg"
+                return 1
+            else
+                python ~/cage_lang/cg_interpreter.pyc "$@"
+            fi
+        else
+            echo "Ошибка: укажите расширение .cg в конце имени файла"
+            return 1
+        fi
+    else
+        python ~/cage_lang/cg_interpreter.pyc "$@"
+    fi
+}
 
 cp0() {
     if [ $# -eq 0 ]; then
