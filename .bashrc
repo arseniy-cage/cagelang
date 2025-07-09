@@ -1,4 +1,5 @@
 export PATH="$PATH:$HOME/cage_lang"
+alias cage='python ~/cage_lang/cg_interpreter.py'
 
 cp0() {
     if [ $# -eq 0 ]; then
